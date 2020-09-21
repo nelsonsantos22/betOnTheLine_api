@@ -83,6 +83,19 @@ namespace api.Controllers
             return new OkResult();
         }
 
+
+        // GET api/football_match/5/tip
+        [HttpGet("{id}/tip")]
+        public async Task<IActionResult> GetUserTip(int id)
+        {
+            await Db.Connection.OpenAsync();
+            var query = new TipQuery(Db);
+            var result = await query.FindFootballMatchTipAsync(id);
+            if (result is null)
+                return new NotFoundResult();
+            return new OkObjectResult(result);
+        }
+
         public AppDb Db { get; }
     }
 }

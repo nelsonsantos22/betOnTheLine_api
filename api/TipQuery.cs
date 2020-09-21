@@ -63,6 +63,22 @@ namespace api
             return result;
         }
 
+        //return all tips from a specific football_match
+        public async Task<List<Tip>> FindFootballMatchTipAsync(int id)
+        {
+            using var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = @"SELECT  * FROM `tip` WHERE `gameId` = @gameId";
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@gameId",
+                DbType = DbType.Int32,
+                Value = id,
+            });
+
+            var result = await ReadAllAsync(await cmd.ExecuteReaderAsync());
+            return result;
+        }
+
         private async Task<List<Tip>> ReadAllAsync(DbDataReader reader)
         {
             var tips = new List<Tip>();
