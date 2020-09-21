@@ -20,7 +20,6 @@ namespace api
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"SELECT  `Id`, `home_team`, `away_team` FROM `football_match` WHERE `Id` = @id";
-            //cmd.CommandText = @"SELECT `Id`, `Title`, `Content` FROM `person` WHERE `Id` = @id";
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@id",
@@ -35,7 +34,6 @@ namespace api
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"SELECT `Id`, `home_team`, `away_team`  FROM `football_match` ORDER BY `Id` DESC LIMIT 10;";
-            //cmd.CommandText = @"SELECT `Id`, `Title`, `Content` FROM `person` ORDER BY `Id` DESC LIMIT 10;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
@@ -50,7 +48,7 @@ namespace api
 
         private async Task<List<football_match>> ReadAllAsync(DbDataReader reader)
         {
-            var posts = new List<football_match>();
+            var match = new List<football_match>();
             using (reader)
             {
                 while (await reader.ReadAsync())
@@ -62,10 +60,10 @@ namespace api
                         away_team = reader.GetString(2),
                         
                     };
-                    posts.Add(post);
+                    match.Add(post);
                 }
             }
-            return posts;
+            return match;
         }
     }
 }

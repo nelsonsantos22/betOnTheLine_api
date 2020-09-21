@@ -13,7 +13,7 @@ namespace api.Controllers
             Db = db;
         }
 
-        // GET api/blog
+        // GET api/tip
         [HttpGet]
         public async Task<IActionResult> GetLatest()
         {
@@ -23,7 +23,7 @@ namespace api.Controllers
             return new OkObjectResult(result);
         }
 
-        // GET api/blog/5
+        // GET api/tip/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOne(int id)
         {
@@ -35,7 +35,7 @@ namespace api.Controllers
             return new OkObjectResult(result);
         }
 
-        // POST api/blog
+        // POST api/tip
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Tip body)
         {
@@ -45,7 +45,7 @@ namespace api.Controllers
             return new OkObjectResult(body);
         }
 
-        // PUT api/blog/5
+        // PUT api/tip/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOne(int id, [FromBody]Tip body)
         {
@@ -62,7 +62,7 @@ namespace api.Controllers
             return new OkObjectResult(result);
         }
 
-        // DELETE api/blog/5
+        // DELETE api/tip/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOne(int id)
         {
@@ -75,7 +75,7 @@ namespace api.Controllers
             return new OkResult();
         }
 
-        // DELETE api/blog
+        // DELETE api/tip
         [HttpDelete]
         public async Task<IActionResult> DeleteAll()
         {

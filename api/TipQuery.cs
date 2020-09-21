@@ -20,7 +20,6 @@ namespace api
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"SELECT  `Id`, `tip`, `message`, `userId`, `gameId` WHERE `Id` = @id";
-            //cmd.CommandText = @"SELECT `Id`, `Title`, `Content` FROM `person` WHERE `Id` = @id";
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@id",
@@ -35,7 +34,6 @@ namespace api
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"SELECT `Id`, `tip`, `message`,`userId`, `gameId`  FROM `tip` ORDER BY `Id` DESC LIMIT 10;";
-            //cmd.CommandText = @"SELECT `Id`, `Title`, `Content` FROM `person` ORDER BY `Id` DESC LIMIT 10;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
@@ -54,7 +52,6 @@ namespace api
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"SELECT  * FROM `tip` WHERE `userId` = @userId";
-            //cmd.CommandText = @"SELECT `Id`, `Title`, `Content` FROM `person` WHERE `Id` = @id";
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@userId",
@@ -68,12 +65,12 @@ namespace api
 
         private async Task<List<Tip>> ReadAllAsync(DbDataReader reader)
         {
-            var posts = new List<Tip>();
+            var tips = new List<Tip>();
             using (reader)
             {
                 while (await reader.ReadAsync())
                 {
-                    var post = new Tip(Db)
+                    var singleTip = new Tip(Db)
                     {
                         Id = reader.GetInt32(0),
                         tip = reader.GetInt32(1),
@@ -81,10 +78,10 @@ namespace api
                         gameId = reader.GetInt32(3),
                         userId = reader.GetInt32(4),
                     };
-                    posts.Add(post);
+                    tips.Add(singleTip);
                 }
             }
-            return posts;
+            return tips;
         }
     }
 }

@@ -37,7 +37,6 @@ namespace api.Models
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"INSERT INTO `tip` (`tip`, `message`,`userId`, `gameId`) VALUES (@tip, @message,@userId,@gameId);";
-            //cmd.CommandText = @"INSERT INTO `person` (`Title`, `Content`) VALUES (@title, @content);";
             BindParams(cmd);
             await cmd.ExecuteNonQueryAsync();
             Id = (int) cmd.LastInsertedId;
@@ -47,7 +46,6 @@ namespace api.Models
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"UPDATE `tip` SET `tip` = @tip, `message` = @message, `userId` = @userId, `gameId` = @gameId WHERE `Id` = @Id;";
-            //cmd.CommandText = @"UPDATE `person` SET `Title` = @title, `Content` = @content WHERE `Id` = @id;";
             BindParams(cmd);
             BindId(cmd);
             await cmd.ExecuteNonQueryAsync();
@@ -57,7 +55,6 @@ namespace api.Models
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"DELETE FROM `tip` WHERE `Id` = @Id;";
-            //cmd.CommandText = @"DELETE FROM `person` WHERE `Id` = @id;";
             BindId(cmd);
             await cmd.ExecuteNonQueryAsync();
         }
@@ -98,19 +95,6 @@ namespace api.Models
                 DbType = DbType.Int32,
                 Value = gameId,
             });
-           
-            /*cmd.Parameters.Add(new MySqlParameter
-            {
-                ParameterName = "@title",
-                DbType = DbType.String,
-                Value = Title,
-            });
-            cmd.Parameters.Add(new MySqlParameter
-            {
-                ParameterName = "@content",
-                DbType = DbType.String,
-                Value = Content,
-            });*/
         }
     }
 }

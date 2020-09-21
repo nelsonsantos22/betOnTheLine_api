@@ -20,7 +20,6 @@ namespace api
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"SELECT  `Id`, `firstname`, `lastname`,`username`,`email`, `password` FROM `person` WHERE `Id` = @id";
-            //cmd.CommandText = @"SELECT `Id`, `Title`, `Content` FROM `person` WHERE `Id` = @id";
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@id",
@@ -35,7 +34,6 @@ namespace api
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"SELECT `Id`, `firstname`, `lastname`,`username`,`email`, `password`   FROM `person` ORDER BY `Id` DESC LIMIT 10;";
-            //cmd.CommandText = @"SELECT `Id`, `Title`, `Content` FROM `person` ORDER BY `Id` DESC LIMIT 10;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
@@ -50,12 +48,12 @@ namespace api
 
         private async Task<List<Person>> ReadAllAsync(DbDataReader reader)
         {
-            var posts = new List<Person>();
+            var users = new List<Person>();
             using (reader)
             {
                 while (await reader.ReadAsync())
                 {
-                    var post = new Person(Db)
+                    var person = new Person(Db)
                     {
                         Id = reader.GetInt32(0),
                         firstName = reader.GetString(1),
@@ -64,10 +62,10 @@ namespace api
                         email = reader.GetString(4),
                         password = reader.GetString(5),
                     };
-                    posts.Add(post);
+                    users.Add(person);
                 }
             }
-            return posts;
+            return users;
         }
     }
 }
