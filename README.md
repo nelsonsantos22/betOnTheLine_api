@@ -14,7 +14,7 @@ The main goal of this project is to learn new technologies such as C# and mySql 
 ```shell
 $ dotnet add package MySqlConnector
 ```
-Change "password" on "appsettings.json" to your mySql password
+Change "password" field on "appsettings.json" file to your mySql password
 ```shell
 "DefaultConnection": "server=127.0.0.1;user id=root;password=CHANGE_HERE;port=3306;database=betontheline;"
 ```
@@ -22,6 +22,7 @@ Change "password" on "appsettings.json" to your mySql password
 ### Create a MySql Database
 ```shell
 CREATE DATABASE betontheline;
+USE betontheline;
 
 CREATE TABLE IF NOT EXISTS person (
   Id INT NOT NULL AUTO_INCREMENT,
