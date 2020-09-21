@@ -12,6 +12,7 @@ The main goal of this project is to learn new technologies such as C# and mySql 
 
 ### Setup
 ```shell
+$ cd api
 $ dotnet add package MySqlConnector
 ```
 Change "password" field on "appsettings.json" file to your mySql password
@@ -57,6 +58,8 @@ CREATE TABLE IF NOT EXISTS tip(
 ```shell
 $ dotnet run
 ```
+
+You can try the CRUD methods on Postman.
 
 ## Team
 
