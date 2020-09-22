@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS tip(
 ```shell
 $ dotnet run
 ```
-
-You can try the CRUD methods on Postman.
+## Test
+Test it with <a href="https://www.postman.com/downloads/">Postman</a>.
 
 ## Team
 
