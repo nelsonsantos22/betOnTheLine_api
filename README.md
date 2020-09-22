@@ -15,7 +15,7 @@ The main goal of this project is to learn new technologies such as C# and mySql 
 $ cd api
 $ dotnet add package MySqlConnector
 ```
-Change "password" field on "appsettings.json" file to your mySql password
+Change "password" field on "appsettings.json" file to your mySql password, as you can see below 
 ```shell
 "DefaultConnection": "server=127.0.0.1;user id=root;password=CHANGE_HERE;port=3306;database=betontheline;"
 ```
